@@ -9,7 +9,6 @@ import uuid
 import os
 from optuna.pruners import MedianPruner
 from optuna.samplers import TPESampler
-from optuna.callbacks import EarlyStoppingCallback
 import optuna.visualization as vis
 import matplotlib.pyplot as plt
 
@@ -93,17 +92,13 @@ def run_optuna_study(
     to_run = max(0, n_trials - completed)
     if to_run > 0:
         print(f"Running {to_run} new trials (target: {n_trials})...")
-        # Add early stopping callback
-        early_stopping_callback = EarlyStoppingCallback(
-            patience=5,  # Number of trials to wait before stopping
-            threshold=None,  # Threshold for early stopping
-        )
+        # Optuna 4.x removed EarlyStoppingCallback. Run optimization without it.
         study.optimize(
-            objective_with_error_handling, 
-            n_trials=to_run, 
-            timeout=timeout, 
-            n_jobs=-1,  # Use all available cores
-            callbacks=[early_stopping_callback]
+            objective_with_error_handling,
+            n_trials=to_run,
+            timeout=timeout,
+            n_jobs=-1,
+            callbacks=None,
         )
     else:
         print(f"Study already has {completed} completed trials.")

@@ -92,7 +92,7 @@ def run_outer_cv_loop(
 
     t0_cv = time.time()
 
-    for fold, (idx_tr, idx_va) in enumerate(kf_outer.split(X_train_val, y_train_val_reg), 1):
+    for fold, (idx_tr, idx_va) in enumerate(kf_outer.split(X_train_val, y_train_val_cls), 1):
         print(f"\n===== Outer Fold {fold}/{N_SPLITS_OUTER_CV} =====")
         fold_start = time.time()
 

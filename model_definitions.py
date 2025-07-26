@@ -818,12 +818,11 @@ def get_meta_regressor_candidates(random_state=42):
         ),
         
         'BayesianRidge': BayesianRidge(
-            n_iter=300,
+            max_iter=300,
             alpha_1=1e-6,
             alpha_2=1e-6,
             lambda_1=1e-6,
             lambda_2=1e-6,
-            random_state=random_state
         )
     }
 
