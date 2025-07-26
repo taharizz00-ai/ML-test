@@ -478,7 +478,9 @@ def save_artifacts(
     Args:
         final_regressor: The final trained regression model.
         final_classifier: The final trained classification model.
-        selected_features_final (list): List of final selected feature names.
+        selected_features_final (dict or list): Final selected feature names.
+            Can be a dictionary with separate entries for regression and
+            classification tasks or a simple list when features are shared.
         outer_fold_results_reg (dict): Aggregated regression CV results.
         outer_fold_results_cls (dict): Aggregated classification CV results.
         output_dir (str): Directory to save the artifacts.

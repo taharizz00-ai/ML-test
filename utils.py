@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 # Suppress Optuna trial INFO logging & specific warnings
 # optuna.logging.set_verbosity(optuna.logging.WARNING)
-optuna.logging.set_verbosity(optuna.logging.WARNING) # Change to INFO for supressing warnings
+optuna.logging.set_verbosity(optuna.logging.WARNING) # Change to INFO for suppressing warnings
 warnings.filterwarnings('ignore', category=UserWarning, message='.*Starting from version 2.2.1.*')
 warnings.filterwarnings('ignore', category=FutureWarning)
 warnings.filterwarnings('ignore', category=RuntimeWarning, message='.*divide by zero.*')
@@ -27,8 +27,8 @@ def get_compute_device_params():
     Returns hardcoded CPU parameters for model training.
     """
     return {
-        'tree_method': 'hist', # xgb
-        'device': "cpu"  # lgbm
+        'xgb_tree_method': 'hist',  # for XGBoost
+        'lgbm_device': "cpu"        # for LightGBM
     }
 
 def run_optuna_study(
